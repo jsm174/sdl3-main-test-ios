@@ -270,6 +270,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SDLMainTest",
+					"$(PROJECT_DIR)/SDLMainTest/Engine",
 				);
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(SRCROOT)/third-party/build-libs/ios-arm64";
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(SRCROOT)/third-party/build-libs/ios-simulator-arm64";
@@ -300,7 +301,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.SDLMainTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SDLMainTest/SDLMainTest-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SDLMainTest/Bridge/SDLMainTest-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -330,6 +331,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SDLMainTest",
+					"$(PROJECT_DIR)/SDLMainTest/Engine",
 				);
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(SRCROOT)/third-party/build-libs/ios-arm64";
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(SRCROOT)/third-party/build-libs/ios-simulator-arm64";
@@ -360,7 +362,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.SDLMainTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SDLMainTest/SDLMainTest-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SDLMainTest/Bridge/SDLMainTest-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
