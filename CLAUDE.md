@@ -125,7 +125,10 @@ if (event->type == SDL_EVENT_MOUSE_BUTTON_DOWN || event->type == SDL_EVENT_MOUSE
 3. **SwiftUI Overlay Layer** - Game controls that block touches selectively
 
 ### **Key Components**:
+- **`libSDLGameLibrary.a`** - Compiled SDL3 game engine with all app callbacks
+- **`sdl_game_library.h`** - Clean C API for Swift integration
 - **`SDLBridge.swift`** - Coordinates between SDL3 and SwiftUI
+- **`SwiftUIBridge.m`** - C bridge functions using the library API
 - **`TouchBlockingModifier.swift`** - Reusable touch blocking system
 - **`GameOverlayView.swift`** - Centered game controls overlay
 - **`AppCoordinator.swift`** - SwiftUI app state management
@@ -172,12 +175,45 @@ User Touch → Outside Overlay → SDL3 receives it → Square moves
 ✅ **Reusable touch blocking system**  
 ✅ **Clean, maintainable code architecture**
 
+## 🚀 Library Architecture Improvements
+
+### **SDL3 Library Refactor (Latest)**
+**Achievement**: Successfully moved all SDL3 C code into a compiled static library.
+
+**New Architecture**:
+- **`libSDLGameLibrary.a`** - Contains all SDL3 app callbacks (`SDL_AppInit`, `SDL_AppIterate`, `SDL_AppEvent`, `SDL_AppQuit`)
+- **`sdl_game_library.h`** - Simple 5-function API for Swift integration
+- **`CMakeLists.txt`** - iOS-specific build system using proper platform flags
+- **`build_library.sh`** - Automated build script
+
+**Benefits**:
+- **Complete Encapsulation** - All SDL3 complexity hidden in library
+- **Clean Integration** - Only 5 functions exposed to Swift
+- **Reusable** - Library can be used in other projects
+- **Maintainable** - Clear separation between game engine and UI
+
+**Build Process**:
+```bash
+./build_library.sh  # Builds libSDLGameLibrary.a for iOS
+```
+
+**Integration**:
+```c
+// Simple API
+void sdl_game_set_visibility(bool visible);
+void sdl_game_show_window(void);
+void sdl_game_hide_window(void);
+void* sdl_game_get_window(void);
+void sdl_game_set_swift_bridge_callback(void (*callback)(void));
+```
+
 ## 💡 Future Considerations
 
 - **Orientation Handling**: Still pending implementation
 - **Performance Optimization**: Monitor for any UI/rendering conflicts
 - **Additional Overlays**: The touch blocking system is ready for any new overlays
 - **Cross-Platform**: Architecture could potentially work on other platforms
+- **Library Distribution**: Could package library for wider SDL3+SwiftUI adoption
 
 ---
 
