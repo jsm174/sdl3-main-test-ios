@@ -2,10 +2,21 @@ import UIKit
 import Foundation
 import SwiftUI
 
+// MARK: - C Function Declarations
+
+@_silgen_name("setSDLVisibility")
+func setSDLVisibility(_ visible: Bool)
+
+@_silgen_name("showSDLWindowFromC")
+func showSDLWindowFromC()
+
+@_silgen_name("hideSDLWindowFromC")
+func hideSDLWindowFromC()
+
 // MARK: - SDL Bridge
 
-@objc class SDLBridge: NSObject {
-    @objc static let shared = SDLBridge()
+@objc public class SDLBridge: NSObject {
+    @objc public static let shared = SDLBridge()
     
     private weak var renderView: UIView?
     private var isActive = false
@@ -17,7 +28,7 @@ import SwiftUI
         super.init()
     }
     
-    @objc func initializeApp() {
+    @objc public func initializeApp() {
         print("SDLBridge: initializeApp called")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             print("SDLBridge: On main queue, setting up SwiftUI...")
@@ -74,7 +85,7 @@ import SwiftUI
     
     private var overlayController: UIHostingController<GameOverlayView>?
     
-    @objc func addOverlayToSDLWindow(_ sdlWindow: OpaquePointer) {
+    @objc public func addOverlayToSDLWindow(_ sdlWindow: OpaquePointer) {
         guard let appCoordinator = appCoordinator else { return }
         
         // Add SwiftUI overlay to the SDL window as a child view controller
@@ -105,7 +116,7 @@ import SwiftUI
         self.overlayController = overlayVC
     }
     
-    @objc func removeOverlayFromSDLWindow() {
+    @objc public func removeOverlayFromSDLWindow() {
         overlayController?.willMove(toParent: nil)
         overlayController?.view.removeFromSuperview()
         overlayController?.removeFromParent()

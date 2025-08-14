@@ -1,24 +1,9 @@
 import SwiftUI
 
-// MARK: - Game Overlay View
-
 struct GameOverlayView: View {
     let coordinator: AppCoordinator
     
     var body: some View {
-        ZStack {
-            // Transparent background that allows touches to pass through to SDL
-            Color.clear
-                .allowsHitTesting(false)
-            
-            // Game controls positioned in center of screen
-            gameControlsView
-        }
-    }
-    
-    // MARK: - Game Controls
-    
-    private var gameControlsView: some View {
         VStack(alignment: .center, spacing: 10) {
             Text("Game Controls")
                 .font(.headline)

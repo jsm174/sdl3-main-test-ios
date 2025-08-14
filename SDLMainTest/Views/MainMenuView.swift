@@ -8,8 +8,7 @@ struct MainMenuView: View {
         "Start Game",
         "Settings",
         "High Scores",
-        "About",
-        "Exit"
+        "About"
     ]
     
     var body: some View {

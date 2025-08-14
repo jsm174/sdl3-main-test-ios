@@ -15,24 +15,6 @@ struct RootAppView: View {
     }
 }
 
-struct GameView: View {
-    @EnvironmentObject var coordinator: AppCoordinator
-    
-    var body: some View {
-        // Empty view - SDL renders fullscreen, overlay is handled separately
-        Color.clear
-            .ignoresSafeArea()
-            .onAppear {
-                SDLBridge.shared.setSDLActive(true)
-                SDLBridge.shared.showSDLWindow()
-            }
-            .onDisappear {
-                SDLBridge.shared.setSDLActive(false)
-                SDLBridge.shared.hideSDLWindow()
-            }
-    }
-}
-
 #Preview {
     RootAppView()
         .environmentObject(AppCoordinator())
